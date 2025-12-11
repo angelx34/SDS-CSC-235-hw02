@@ -41,7 +41,7 @@ You website must:
 
  If this is your first submission of this assignment: fill out `rubric.md`, push your completed files to github, and submit your repo on Gradescope.
 
- If this is a revised submission of this assignment: fill out `reflection.md`, `rubric.md`, push your completed files to github, and submit your repo on Gradescope. 
+ If this is a revised submission of this assignment: fill out `changelog.md`, `rubric.md`, push your completed files to github, and submit your repo on Gradescope. 
 
 
 
