@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Visualization of Student Performance</title>
+    <link rel="stylesheet" href="style.css">
+    <script defer src="index.js"></script>
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="site-header" id="top">
+        <div class="header-inner">
+            <h1>Visualizations of Student Academic Performance</h1>
+
+            <p class="subtitle"></p>
+
+            <!-- Navbar -->
+            <nav class="nav">
+                <a href="#data-introduction">Data</a>
+                <a href="#summary-stats">Summary Statistics</a>
+                <a href="#distribution-frequency">Distribution/frequency tables</a>
+                <a href="#visualizations">Visualizations</a>
+                <a href="#hypothesis">Hypotheses</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Introduction to the Data -->
+        <section id="data-introduction" class="section">
+            <h2>Introduction to the Data</h2>
+
+            <p>
+                The dataset used in this project comes from the
+                <strong>UCI Machine Learning Repository</strong> and is titled
+                <em>Student Performance</em> (Cortez, 2008). It contains academic and
+                demographic information for secondary school students from two
+                Portuguese schools: Gabriel Pereira and Mousinho da Silveira.
+            </p>
+
+            <p>
+                Source:
+                <a href="https://doi.org/10.24432/C5TG7T" target="_blank" rel="noreferrer">
+                    Cortez, P. (2008). Student Performance Dataset.
+                </a>
+            </p>
+
+            <h3>What the Data Captures</h3>
+            <p>
+                Each observation in the dataset represents one student. The dataset
+                includes academic performance measures such as first, second, and final
+                period grades (G1, G2, G3), as well as behavioral and contextual variables
+                including number of absences, study time, health status, family background,
+                parental occupation, and extracurricular participation.
+            </p>
+
+            <p>
+                The final grade (G3), measured on a 0–20 scale, is the outcome variable of the analisis. Additional variables such as absences,
+                study time, parental job, and health provide insight into factors that
+                may influence academic performance.
+            </p>
+
+            <h3>Potential Biases and Limitations</h3>
+            <ul>
+                <li>
+                    <strong>Limited geographic scope:</strong> The dataset includes only
+                    two schools in Portugal, which limits generalizability to other regions
+                    or education systems.
+                </li>
+                <li>
+                    <strong>Self-reported measures:</strong> Variables such as health and
+                    study time are based on student reporting and may contain inaccuracies.
+                </li>
+                <li>
+                    <strong>Cross-sectional data:</strong> The dataset captures a single
+                    academic year, making it difficult to infer long-term trends or causal
+                    relationships.
+                </li>
+                <li>
+                    <strong>Cultural context:</strong> Educational norms and family structures
+                    in Portugal may differ from those in other countries.
+                </li>
+            </ul>
+        </section>
+
+
+        <!-- Summary Statistics -->
+        <section id="summary-stats" class="section">
+            <h2>Summary Statistics</h2>
+            <p>
+                This analysis focuses on two quantitative variables
+                (<strong>Absences</strong> and <strong>Final Grade (G3)</strong>),
+                two ordinal variables (<strong>Study Time</strong> and
+                <strong>Family Relationship</strong>), and two nominal variables
+                (<strong>Reason</strong> and <strong>School</strong>).
+            </p>
+
+            
+            <div class="controls">
+                <button id="toggleQuantBtn" type="button">Show Quantitative Variables</button>
+            </div>
+
+            <div id="quantBlock" class="collapsible hidden">
+                <h3>Quantitative Variables</h3>
+                <h4>Absences and Final Grades (G3)</h4>
+                <p>The absences variable ranges from 0-93 while final grade (G3) ranges from 0-20 </p>
+
+                <table class="table table-quant">
+                    <tr>
+                        <th></th>
+                        <th>Mean </th>
+                        <th>Standard Deviation</th>
+                    </tr>
+                    <tr>
+                        <td>Absences</td>
+                        <td>3.659476</td>
+                        <td>4.640759</td>
+                    </tr>
+                    <tr>
+                        <td> G3 </td>
+                        <td>11.90601</td>
+                        <td>3.230656</td>
+                    </tr>
+                </table>
+
+                <p>
+                    The average number of absences is <strong>3.66</strong>, with a
+                    relatively large standard deviation of <strong>4.64</strong>.
+                    This suggests that while many students miss only a few classes,
+                    some students have substantially higher absence counts, increasing
+                    variability in attendance.
+                    The average final grade (G3) is <strong>11.91</strong> on a 0–20 scale,
+                    with a standard deviation of <strong>3.23</strong>. This indicates
+                    moderate overall academic performance with noticeable variation
+                    among students.
+                </p>
+            </div>
+
+           
+            <div class="controls">
+                <button id="toggleOrdinalBtn" type="button">Show Ordinal Variables</button>
+            </div>
+
+            <div id="ordinalBlock" class="collapsible hidden">
+                <h3>Ordinal Variables</h3>
+                <h4>Familial Relationship (famrel) and Studytime (studytime)</h4>
+                <p> famrel ranges from 1-5 where 1 means"very poor" and 5 means "very good"</p>
+                <p> Study time ranges from 1-4 on the scale:</p>
+                <ul>
+                    <li>1 = Less than 2 hours per week</li>
+                    <li>2 = 2 to 5 hours per week</li>
+                    <li>3 = 5 to 10 hours per week</li>
+                    <li>4 = More than 10 hours per week</li>
+                </ul>
+
+                <table class="table famrel-table">
+                    <tr>
+                        <th>Familial Relationship </th>
+                        <th>Total</th>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>22</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>29</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>101</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>317</td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>180</td>
+                    </tr>
+                </table>
+
+                <p>
+                    The majority of students report good (4) or excellent (5) family relationships,
+                    suggesting that most students perceive strong family support. Only a small
+                    proportion report poor relationship quality. This variable may help explain
+                    differences in academic performance.
+                </p>
+
+                <table class="table table-studytime">
+                    <tr>
+                        <th>Study Time </th>
+                        <th>Total</th>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>212</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>305</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>97</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>35</td>
+                    </tr>
+                </table>
+
+                <p>
+                    Most students fall into the lower study time categories (1 and 2),
+                    indicating that many students spend fewer than five hours per week
+                    studying outside of class. This may be an important factor when
+                    analyzing differences in final grades.
+                </p>
+            </div>
+
+        
+            <div class="controls">
+                <button id="toggleNominalBtn" type="button">Show Nominal Variables</button>
+            </div>
+
+            <div id="nominalBlock" class="collapsible hidden">
+                <h3>Nominal Variables</h3>
+                <h4>Reasons for attending school(reason) and School (school)</h4>
+
+                <table class="table reason-table">
+                    <tr>
+                        <th>Reason</th>
+                        <th>Total</th>
+                    </tr>
+                    <tr>
+                        <td>Course </td>
+                        <td>135</td>
+                    </tr>
+                    <tr>
+                        <td>Home</td>
+                        <td>48</td>
+                    </tr>
+                    <tr>
+                        <td>Other</td>
+                        <td>258 </td>
+                    </tr>
+                    <tr>
+                        <td>Reputation</td>
+                        <td>136</td>
+                    </tr>
+                </table>
+
+                <p>The most common reason reported is “Other,” followed by course preference
+                    and school reputation. These categories may reflect differences in student
+                    motivation, which could influence academic performance.</p>
+
+                <table class="table school-table">
+                    <tr>
+                        <th>School </th>
+                        <th>Total</th>
+                    </tr>
+                    <tr>
+                        <td>GB </td>
+                        <td>423</td>
+                    </tr>
+                    <tr>
+                        <td>MS</td>
+                        <td>226</td>
+                    </tr>
+                </table>
+
+                <p>
+                    The dataset contains more students from Gabriel Pereira than Mousinho da
+                    Silveira. Comparing performance across schools may reveal institutional
+                    differences in academic outcomes.
+                </p>
+            </div>
+        </section>
+
+        <!-- Frequency/Distribution Visualization -->
+        <section id="distribution-frequency" class="section">
+            <h2>Frequency/Distribution Visualizations</h2>
+
+            <h3>Distribution of Absences</h3>
+            <img src="images/Distribution-of-Absences.png" alt="Distribution of absences">
+            <p>
+                The distribution of absences is strongly right-skewed. Most students have
+                relatively few absences, with the highest frequency near zero to five
+                absences. However, a small number of students exhibit very high absence
+                counts, extending beyond 20 and even 30 absences. This skewness suggests
+                that extreme absenteeism may play a significant role in academic outcomes.
+            </p>
+
+            <h3>Distribution of Final Grades</h3>
+            <img src="images/Distribution-Final-Grade.png" alt="Distribution of final grades">
+            <p>
+                Final grades appear approximately bell-shaped, centered around 11–13
+                on a 0–20 scale. While most students cluster around the middle of the
+                grading range, there are relatively few extremely low or extremely high
+                scores. This moderate spread suggests variability in performance but no
+                extreme polarization.
+            </p>
+
+            <h3>Distribution of Study Time</h3>
+            <img src="images/Distribution-of-StudyTime.png" alt="Distribution of study time">
+            <p>
+                Most students fall into the lower study time categories (levels 1 and 2),
+                representing fewer than five hours of weekly study time. Far fewer students
+                report studying more than 10 hours per week (level 4). This imbalance
+                suggests that high study effort is less common, which may influence grade variation.
+            </p>
+
+            <h3>Distribution of Family Relationship</h3>
+            <img src="images/Distribution-Family-Relationship.png" alt="Distribution of Family Relationship Quality">
+            <p>Family relationship quality is concentrated in the higher categories
+                (levels 4 and 5). Very few students report poor family relationships
+                (levels 1 or 2). This indicates that most students perceive strong family
+                support, though the smaller lower-quality groups may still show differences
+                in academic outcomes.
+            </p>
+
+            <h3>Distribution of Reason for Attendance</h3>
+            <img src="images/Distribution-of-Reason-for-attendence.png" alt="Distribution of reason for attendance">
+            <p>
+                The most common reason for attending school is categorized as "Other,"
+                followed by course preference and school reputation. Fewer students
+                selected proximity to home. These differences may reflect varying levels
+                of academic motivation or institutional preference.
+            </p>
+
+            <h3>Distribution of School</h3>
+            <img src="images/Distribution-of-Schools.png" alt="Distribution of schools">
+            <p>
+                The dataset contains more students from Gabriel Pereira (GP) than
+                Mousinho da Silveira (MS). While this imbalance does not affect
+                descriptive analysis, it is important to consider when comparing
+                academic performance across institutions.
+            </p>
+        </section>
+
+        <!-- Visualizations  -->
+        <section id="visualizations" class="section">
+            <h2>Visualizations</h2>
+
+            <h3>Absences vs Final Grade</h3>
+            <img src="images/FinalGradevsNumberofAbsences.png" alt="Absences vs final grade">
+            <p>
+                The scatterplot shows a slight negative trend between absences and
+                final grade (G3). As absences increase, final grades tend to decrease.
+                The regression line slopes downward, suggesting a negative association
+                between attendance and performance. While the relationship is not extremely strong, students with very
+                high absence counts appear more likely to receive lower grades.
+                This pattern suggests attendance may influence academic outcomes.
+            </p>
+
+            <h3>G3 by Study Time</h3>
+            <img src="images/FinalGradebyStudyTime.png" alt="Final grade by study time">
+            <p>
+                The boxplot comparing final grades across study time levels shows
+                an upward shift in median grades as study time increases. Students
+                in higher study time categories generally have higher median G3 scores.
+            </p>
+
+            <h3>G3 by Family Relationship</h3>
+            <img src="images/FinalGradebyFamilyRelationship.png" alt="Final grade by family relationship">
+            <p>
+                The boxplot of final grade by family relationship quality shows
+                a modest increase in median grades as reported family relationship
+                quality improves. Students reporting higher levels (4 and 5)
+                tend to have slightly higher median G3 scores. Therefore, the more familial support a student has the likelier they will perform better academically  
+            </p>
+        </section>
+
+        <!-- Testable Hypothesis -->
+        <section id="hypothesis" class="section">
+            <h2>Hypotheses</h2>
+
+            <h3>Hypothesis 1</h3>
+            <p>Students with higher numbers of absences will have significantly
+                lower final grades (G3) than students with fewer absences.</p>
+
+            <h3>Hypothesis 2</h3>
+            <p>Students who report higher weekly study time will have higher
+                average final grades (G3) than students with lower study time levels.</p>
+
+            <h3>Hypothesis 3</h3>
+            <p>Students reporting higher family relationship quality will have
+                higher average final grades (G3) compared to students reporting
+                lower relationship quality.</p>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>
+            SDS-CSC-235 HW02 — Angelica Brito Diaz
+        </p>
+        <p><a href="#top">Back to top</a></p>
+    </footer>
+
+</body>
+
+</html>
